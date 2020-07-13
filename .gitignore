@@ -1,0 +1,6 @@
+/pyvenv.cfg
+.idea/
+
+venv/
+
+*.pyc
