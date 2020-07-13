@@ -3,4 +3,10 @@
 
 venv/
 
+env/
+
+Lib/
+
+Scripts/
+
 *.pyc
