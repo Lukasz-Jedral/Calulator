@@ -10,40 +10,35 @@ def calc_2_numbers():
                              + "1 - Dodawanie\n"\
                              + "2 - Odejmowanie\n"\
                              + "3 - Mnożenie\n"\
-                             + "4 - Dzielenie:")
-    if not calculation_type == 1 or calculation_type == 2\
-    or calculation_type == 3 or calculation_type == 4: #ograniczenie wprowadanych wartosci do 1,2,3,4
+                             + "4 - Dzielenie:\n")
+    if calculation_type == '1' or calculation_type == '2'\
+    or calculation_type == '3' or calculation_type == '4':
+        pass
+    else:   #ograniczenie wprowadanych wartosci do 1,2,3,4
         print("Dozwolone są jedynie wartości od 1 do 4. Zamykam program.")
         return
 
     number1 = input("Podaj pierwszą liczbę:")
     number2 = input("Podaj drugą liczbę:")
 
-    if  isinstance(number1, (int, float, complex)) and not isinstance(number1, bool):
-        is_number = True
-    else:
-        is_number = False
-
-    if isinstance(number2, (int, float, complex)) and not isinstance(number2, bool):
-        is_number = True
-    else:
-        is_number = False
-
-    if is_number = False:
+    try: #kontrola czy podane wartosci sa liczbami
+        float(number1)
+        float(number2)
+    except:
         print("Przynajmniej jedna z podanych wartości nie jest liczbą. Zamykam program.")
         return
 
-    if calculation_type == 1:
+    if calculation_type == '1':
         calculation_result = number1 + number2
         calculation_name = "Dodaję"
-    if calculation_type == 2:
+    if calculation_type == '2':
         calculation_result = number1 - number2
         calculation_name = "Odejmuję"
-    if calculation_type == 3:
+    if calculation_type == '3':
         calculation_result = number1 * number2
         calculation_name = "Mnożę"
-    if calculation_type == 4:
-        if number2 == 0:
+    if calculation_type == '4':
+        if number2 == 0.0:
             print("Dzielenie przez zero niemożliwe. Zamykam program")
             return
         else:
@@ -55,6 +50,7 @@ def calc_2_numbers():
     return calculation_result
 
 if __name__ == "__main__":
+    calc_2_numbers()
     logging.debug("The program was called with this parameters %s" % sys.argv[1:])
-    logging.debug("First parameter is %s" % sys.argv[1])
-    logging.debug("Second parameter is %s" % sys.argv[2])
+    #logging.debug("First parameter is %s" % sys.argv[1])
+    #logging.debug("Second parameter is %s" % sys.argv[2])
