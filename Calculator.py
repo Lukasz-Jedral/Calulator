@@ -1,6 +1,6 @@
 import sys
 import logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s', filename="logfile.log")
+logging.basicConfig(level=logging.DEBUG)
 
 def calc_2_numbers():
     '''Użytkownik będzie poproszony o wybranie rodzaju działania i podanie dwóch liczb.
@@ -18,12 +18,12 @@ def calc_2_numbers():
         print("Dozwolone są jedynie wartości od 1 do 4. Zamykam program.")
         return
 
-    number1 = input("Podaj pierwszą liczbę:")
-    number2 = input("Podaj drugą liczbę:")
+    user_value1 = input("Podaj pierwszą liczbę:")
+    user_value2 = input("Podaj drugą liczbę:")
 
     try: #kontrola czy podane wartosci sa liczbami
-        float(number1)
-        float(number2)
+        number1 = float(user_value1)
+        number2 = float(user_value2)
     except:
         print("Przynajmniej jedna z podanych wartości nie jest liczbą. Zamykam program.")
         return
@@ -51,6 +51,4 @@ def calc_2_numbers():
 
 if __name__ == "__main__":
     calc_2_numbers()
-    logging.debug("The program was called with this parameters %s" % sys.argv[1:])
-    #logging.debug("First parameter is %s" % sys.argv[1])
-    #logging.debug("Second parameter is %s" % sys.argv[2])
+
