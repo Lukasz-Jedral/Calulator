@@ -3,6 +3,9 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(message)s', filename="logfile.log")
 
 def calc_2_numbers():
+    '''Użytkownik będzie poproszony o wybranie rodzaju działania i podanie dwóch liczb.
+    Funkcja zwróci wynik działania'''
+
     calculation_type = input("Podaj działanie, posługując się odpowiednią liczbą:\n"\
                              + "1 - Dodawanie\n"\
                              + "2 - Odejmowanie\n"\
@@ -17,21 +20,39 @@ def calc_2_numbers():
     number2 = input("Podaj drugą liczbę:")
 
     if  isinstance(number1, (int, float, complex)) and not isinstance(number1, bool):
-        isnumber = True
+        is_number = True
     else:
-        isnumber = False
-    if isinstance(number2, (int, float, complex)) and not isinstance(number2, bool):
-        isnumber = True
-    else:
-        isnumber = False
+        is_number = False
 
-    if isnumber = False:
-        print("At least one of given values in not valid number. Function terminated")
+    if isinstance(number2, (int, float, complex)) and not isinstance(number2, bool):
+        is_number = True
+    else:
+        is_number = False
+
+    if is_number = False:
+        print("Przynajmniej jedna z podanych wartości nie jest liczbą. Zamykam program.")
         return
 
+    if calculation_type == 1:
+        calculation_result = number1 + number2
+        calculation_name = "Dodaję"
+    if calculation_type == 2:
+        calculation_result = number1 - number2
+        calculation_name = "Odejmuję"
+    if calculation_type == 3:
+        calculation_result = number1 * number2
+        calculation_name = "Mnożę"
+    if calculation_type == 4:
+        if number2 == 0:
+            print("Dzielenie przez zero niemożliwe. Zamykam program")
+            return
+        else:
+            calculation_result = number1 / number2
+            calculation_name = "Dzielę"
 
-
-
+    logging.info(f"{calculation_name}: {number1} i {number2}")
+    logging.info(f"Wynik: {calculation_result}")
+    return calculation_result
 
 if __name__ == "__main__":
     logging.debug("The program was called with this parameters %s" % sys.argv[1:])
