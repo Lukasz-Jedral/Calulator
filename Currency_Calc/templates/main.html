@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    {% block head %}
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Prosty kalkulator walut</title>
-    {% endblock %}
 </head>
 <body>
-<h1>Prosty kalkulator walut</h1>
+    <h1>Prosty kalkulator walut</h1>
+
+    <form action="" method="post">
+        <label for="currency">Wybierz walutę:</label>
+        <select name="currency" id="currency">
+            {% for currency in currencies %}
+            <option>{{currency}}</option>
+            {% endfor %}
+        </select><br>
+        <label for="HowMuchCurr">Jak dużo waluty zamierzasz zakupić?:</label>
+        <input type="number" id="HowMuchCurr" name="HowMuchCurr"><br>
+        <input type="submit" id="HowMuchCurr" name="HowMuchCurr"><br>
+    </form>
 
 </body>
 </html>
