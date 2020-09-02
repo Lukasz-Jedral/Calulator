@@ -3,38 +3,29 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-def get_currencies_full_names_from_csv(integer):
+def get_currencies_full_names_from_csv():
     with open('resources\Dane.csv', newline='') as f:
         reader = csv.reader(f)
-        currencies = []
+        currencies = {}
         for row in reader:
-            currencies.append(row[0])
+            currencies[row[1]] = {'full_name':row[0],'code':row[1], 'bid':row[2],'ask':row[3]}
     return currencies
 
-def get_whole_row_for_chosen_currency_form_csv_file(currency_full_name):
-    with open('resources\Dane.csv', newline='') as f:
-        reader = csv.reader(f)
-        for row in reader:
-            for item in row:
-                if item == currency_full_name:
-                    f_result = row
-    return f_result
-
+currencies = get_currencies_full_names_from_csv()
 
 @app.route('/', methods=['GET','POST'])
 def get_main_page():
     if request.method == 'GET':
-        currencies = get_currencies_full_names_from_csv(0)
-        return render_template("main.html", currencies=currencies)
+        return render_template("main.html", currencies=currencies.keys())
 
     elif request.method == 'POST':
-        posted_list = request.form.getlist('HowMuchCurr')
-        currency_full_name = posted_list[0]
-        currency_amount = posted_list[1]
-        currency_row = get_whole_row_for_chosen_currency_form_csv_file(currency_full_name)
-        result = float(currency_amount) * float(currency_row[3])
-        currency_code = currency_row[1]
-        return render_template("result.html", currency_amount = currency_amount, chosen_currency_code = currency_code, calc_result = result)
+        currency_code = request.form.get('currency')
+        currency_amount = request.form.get('HowMuchCurr')
+        result = float(currency_amount) * float(currencies[currency_code]['ask'])
+        return render_template("result.html",
+                               currency_amount = currency_amount,
+                               chosen_currency_code = currency_code,
+                               calc_result = result)
 
 if __name__=="__main__":
     app.run()
