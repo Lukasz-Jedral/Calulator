@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domowa biblioteczka</title>
+</head>
+<body>
+    <h1>Tytuł: {{book['title']}}</h1>
+    <img src="C:\Kurs_Python\Home Library\uploads\{{ book['file_name'] }}" alt="{{ book['title'] }}" align="right"  >
+    <h2>Autor: {{book['author']}}</h2>
+    <h2>Opis: {{book['description']}}</h2>
+    <h2>Rok wydania: {{book['published']}}</h2>
+    <h2>Wydawca: {{book['publisher']}}</h2>
+
+    <form method = 'POST' action="/home_library/book_update/{{book_id}}">
+        <input type = submit value="Edycja">
+    </form>
+    <form method = 'POST' action="/home_library/book_delete/{{book_id}}">
+        <input type = submit value="Usuń książkę">
+    </form>
+    <form method = 'POST' action="/home_library/full_list">
+        <input type = submit value="Porót">
+    </form>
+</body>
+</html>
