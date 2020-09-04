@@ -5,8 +5,7 @@ from flask_wtf.file import FileField, FileRequired
 
 class RadioForm(FlaskForm):
     radio_field = RadioField(label = "Co zamierzasz zrobić?:",choices=[('browse','Przeglądaj bibliotekę'),
-                                        ('add','Dodaj pozycję do biblioteki'),
-                                        ('delete','Usuń pozycję z biblioteki')])
+                                        ('add','Dodaj pozycję do biblioteki')])
     submit_field = SubmitField("Wykonaj")
 
 class AddNewBookForm(FlaskForm):
@@ -17,4 +16,4 @@ class AddNewBookForm(FlaskForm):
     publisher = StringField('Wydawca:', validators=[DataRequired()])
     cover = FileField('Okładka:',_name='file',validators=[FileRequired()])
     submit_field = SubmitField("Dodaj do biblioteki")
-    cover2 = FileField()
+
